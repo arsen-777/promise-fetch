@@ -29,18 +29,19 @@ function click() {
   fetch(`https://restcountries.com/v3.1/name/${country}`)
     .then((response) => response.json())
     .then((data) => {
+      let { name, area, capital, population, latlng, flags } = data[0];
       infoCountryName.textContent = `country`;
-      infoCountryResult.textContent = data[0].name.common;
+      infoCountryResult.textContent = name.common;
       infoAreaName.textContent = `area`;
-      infoAreaResult.textContent = data[0].area;
+      infoAreaResult.textContent = area;
       infoCapitalName.textContent = `capital`;
-      infoCapitalResult.textContent = data[0].capital;
+      infoCapitalResult.textContent = capital;
       infoPopulation.textContent = `population`;
-      infoPopulationResult.textContent = data[0].population;
+      infoPopulationResult.textContent = population;
       infoFlags.textContent = `flag`;
-      flag.src = data[0].flags.png;
+      flag.src = flags.png;
       infoMaps.textContent = `map`;
-      insertMap(data[0]["latlng"], "info-maps-result");
+      insertMap(latlng, "info-maps-result");
     });
 }
 
